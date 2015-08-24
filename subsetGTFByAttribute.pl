@@ -24,9 +24,9 @@ my $file = $ARGV[0];
 my $transcripts = $ARGV[1];
 my $output = $ARGV[2];
 
-open(INPUT, $transcripts) or die "The transcript file could not be opened\n";
+open(INPUT, $transcripts) or die "The subsetting values file could not be opened\n";
 my %transcripts;
-print "\nparsing transcripts...\n";
+print "\nparsing values...\n";
 while(<INPUT>){
    $_ =~ /^(\S+)*/;
    $transcripts{$1} = 1;
