@@ -3,6 +3,7 @@
 use strict;
 use Bio::EnsEMBL::Registry;
 use Bio::EnsEMBL::TranscriptMapper;
+use Time::HiRes qw (sleep);
 
 my $numAr = scalar(@ARGV);
 if( $numAr != 2 ){
@@ -25,7 +26,7 @@ open(OUT, ">@ARGV[1]");
 
 my $transcript_adaptor = $registry->get_adaptor( 'Human', 'Core', 'Transcript' );
 while(<TRS>){
-  sleep(.5);
+  sleep(.3);
   chop();
   print "$_\n";
   my $stable_id = $_;
