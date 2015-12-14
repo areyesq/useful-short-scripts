@@ -25,13 +25,12 @@ open(OUT, ">@ARGV[1]");
 
 my $transcript_adaptor = $registry->get_adaptor( 'Human', 'Core', 'Transcript' );
 while(<TRS>){
+  sleep(.5);
   chop();
   print "$_\n";
   my $stable_id = $_;
   my $transcript = $transcript_adaptor->fetch_by_stable_id($stable_id);
-  print "$transcript\n";
   my $tamano = length($transcript);
-  print "$tamano\n";
   next if($tamano == 0);
   my $translation = $transcript->translation();
   next if($translation == "");
