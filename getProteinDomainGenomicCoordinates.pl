@@ -25,6 +25,7 @@ open(TRS, "@ARGV[0]");
 open(OUT, ">@ARGV[1]");
 
 my $transcript_adaptor = $registry->get_adaptor( 'Human', 'Core', 'Transcript' );
+my $count = '0000000001';
 while(<TRS>){
   sleep(.3);
   chop();
@@ -44,8 +45,9 @@ while(<TRS>){
      my $something=$pfeature->display_id();
      my $something2=$pfeature->idesc();
      foreach my $genomic_coord(@genomic_coords){
-       print OUT "$stable_id\t$logic_name\t$something\t$something2\t$genomic_coord->{start}\t$genomic_coord->{end}\n";
+       print OUT "$stable_id\t$logic_name\t$something\t$something2\t$genomic_coord->{start}\t$genomic_coord->{end}\tnum$count\n";
      }
+     $count++;
   }
 }
 
