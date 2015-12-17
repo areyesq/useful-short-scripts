@@ -27,7 +27,7 @@ open(OUT, ">@ARGV[1]");
 my $transcript_adaptor = $registry->get_adaptor( 'Human', 'Core', 'Transcript' );
 my $count = '0000000001';
 while(<TRS>){
-  sleep(.3);
+  sleep(.5);
   chop();
   print "$_\n";
   my $stable_id = $_;
