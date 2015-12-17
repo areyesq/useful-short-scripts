@@ -1,7 +1,6 @@
 #!/bin/usr/perl
 
 use strict;
-
 use Bio::EnsEMBL::Registry;
 use Bio::EnsEMBL::TranscriptMapper;
 use Time::HiRes qw (sleep);
