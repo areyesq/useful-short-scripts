@@ -31,6 +31,10 @@ optParser.add_option( "-a", "--minaqual", type="int", dest="minaqual",
    help = "skip all reads with alignment quality lower than the given " +
       "minimum value (default: 10)" )
 
+optParser.add_option( "-f", "--format", type="choice", dest="alignment",
+   choices=("sam", "bam"), default="sam",
+   help = "'sam' or 'bam'. Format of <alignment file> (default: sam)" )
+
 optParser.add_option( "-d", "--region", type="choice", dest="region",
    choices=("exonic_part_number", "bin_part_number"), default="exonic_part_number",
    help = "extra attribute to consider as exonic bin identifier" +
@@ -65,6 +69,7 @@ stranded = opts.stranded == "yes" or opts.stranded == "reverse"
 reverse = opts.stranded == "reverse"
 stranded = False
 is_PE = opts.paired == "yes"
+alignment = opts.alignment
 minaqual = 0
 
 if sam_file == "-":
@@ -179,14 +184,17 @@ def update_count_vector( alternative, thisGene, toAdd ):
          stm = "0" + stm
       thisAlternative=thisGene+":"+stm
       if thisAlternative in alternative:
-#      if transNames[thisAlternative] == "ENSG00000000460:018i":
-#         print a.get_sam_line()
          alternative[thisAlternative] += 1
    return alternative
 
+if alignment == "sam":
+   camara = HTSeq.SAM_Reader
+else:
+   if HTSeq.__version__ < '0.5.4p4':
+      raise SystemError, "If you are using alignment files in a bam format, please update your HTSeq to 0.5.4p4 or higher"
+   camara = HTSeq.BAM_Reader
 
-camara = HTSeq.BAM_Reader( sam_file )
-
+   
 # Now go through the aligned reads
 if not is_PE:
 
