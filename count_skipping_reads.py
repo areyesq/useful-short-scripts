@@ -178,9 +178,10 @@ def update_count_vector( alternative, thisGene, toAdd ):
       while len(stm) < 3:
          stm = "0" + stm
       thisAlternative=thisGene+":"+stm
+      if thisAlternative in alternative:
 #      if transNames[thisAlternative] == "ENSG00000000460:018i":
 #         print a.get_sam_line()
-      alternative[thisAlternative] += 1
+         alternative[thisAlternative] += 1
    return alternative
 
 
@@ -271,6 +272,7 @@ else:
             else:
                alignments[ a.read.name ] = a
       else:
+         print a.read.name
          continue
       num_reads += 1
       if num_reads % 200000 == 0:
