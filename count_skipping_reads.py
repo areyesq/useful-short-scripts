@@ -194,6 +194,7 @@ else:
       raise SystemError, "If you are using alignment files in a bam format, please update your HTSeq to 0.5.4p4 or higher"
    camara = HTSeq.BAM_Reader
 
+camara = camara( sam_file )
    
 # Now go through the aligned reads
 if not is_PE:
@@ -280,7 +281,6 @@ else:
             else:
                alignments[ a.read.name ] = a
       else:
-         print a.read.name
          continue
       num_reads += 1
       if num_reads % 200000 == 0:
