@@ -1,10 +1,10 @@
 #!/usr/bin/env Rscript
 
-suppressMessages(library(dplyr))
-suppressMessages(library(reshape2))
-suppressMessages(library(ggplot2))
-suppressMessages(library(cowplot))
-suppressMessages(library(optparse))
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(reshape2))
+suppressPackageStartupMessages(library(ggplot2))
+suppressPackageStartupMessages(library(cowplot))
+suppressPackageStartupMessages(library(optparse))
  
 option_list = list(
     make_option(c("-s", "--sampleNames"), type="character", default=NULL, 
