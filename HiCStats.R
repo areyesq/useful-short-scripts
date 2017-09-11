@@ -81,8 +81,7 @@ allStatData <- allStatData[,colnames(allStatData) !="dummy"]
 validInteractionNumbers <- filter(allStatData, grepl( "pairs$", allStatData$interactionType))
 totalReadNum <- with( validInteractionNumbers, tapply( numberOfReads, sample, sum ))
 validInteractionNumbers <- mutate( validInteractionNumbers,
-       fractionOfReads=round( validInteractionNumbers$numberOfReads /
-                                 totalReadNum[validInteractionNumbers$sample], 10 ))
+       fractionOfReads=validInteractionNumbers$numberOfReads / totalReadNum[validInteractionNumbers$sample] )
 p1 <- ggplot(data.frame( totalReadPairs=totalReadNum, sample=names( totalReadNum ) ),
        aes(sample, totalReadPairs)) +
     geom_bar( stat="identity" ) + xlab("") +
